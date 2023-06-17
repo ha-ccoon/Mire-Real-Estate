@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "types": ["node", "express"],
+    "target": "ES6",
+    "module": "ES6",
+    "strict": true,
+    "esModuleInterop": true
+  },
+  "include": [
+    "./src/**/*.ts" // 컴파일할 TypeScript 파일 경로 및 패턴을 추가하세요
+  ],
+  "exclude": [
+    "node_modules" // 제외할 디렉토리 또는 파일을 추가하세요
+  ]
+}
