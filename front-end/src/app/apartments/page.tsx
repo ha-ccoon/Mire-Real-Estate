@@ -1,5 +1,7 @@
+import Apartments from '@/components/categories/Apartments'
+
 const page = () => {
-  return <div>skrrrzzzz</div>
+  return <Apartments />
 }
 
 export default page
