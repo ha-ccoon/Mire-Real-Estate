@@ -10,7 +10,17 @@ interface ImageProps {
   alt: string
 }
 
-const Apartments = () => {
+interface ApartmentsProps {
+  data: {
+    forSaleName: string
+    forSalePrice: number
+    // image: ImageProps
+  }
+}
+
+const Apartments = ({ data }: ApartmentsProps) => {
+  const { forSaleName, forSalePrice } = data
+
   const router = useRouter()
 
   return (
@@ -18,7 +28,7 @@ const Apartments = () => {
       <article>
         <button
           type="button"
-          onClick={() => router.push('apartments/detail/1')}
+          onClick={() => router.push('{apartments}/detail/{1}')}
         >
           <Image
             src="/images/apartments.jpg"
@@ -26,7 +36,10 @@ const Apartments = () => {
             height={290}
             alt="매물이미지"
           />
-          엘리스 아파트
+          <ul>
+            <li>{forSaleName}</li>
+            <li>{forSalePrice}</li>
+          </ul>
         </button>
       </article>
     </>
