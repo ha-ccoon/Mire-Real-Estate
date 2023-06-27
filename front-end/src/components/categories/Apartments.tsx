@@ -1,49 +1,58 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/router'
 import Image from 'next/image'
+import axios from 'axios'
 
-interface ImageProps {
-  src: string
-  width: number
-  height: number
-  alt: string
+interface PropertyProps {
+  id: number
+  image: string
+  name: string
+  price: number
+  slug: string
 }
 
-interface ApartmentsProps {
-  data: {
-    forSaleName: string
-    forSalePrice: number
-    // image: ImageProps
-  }
+interface ThumbnailProps {
+  properties: PropertyProps[]
 }
 
-const Apartments = ({ data }: ApartmentsProps) => {
-  const { forSaleName, forSalePrice } = data
-
+const Thumbnail = ({ properties }: ThumbnailProps) => {
   const router = useRouter()
+
+  const handlePropertyClick = (
+    e: React.MouseEvent<HTMLDivElement>,
+    id: number,
+    slug: string,
+  ) => {
+    e.preventDefault()
+    router.push(`${process.env.NEXT_PUBLIC_FETCH_BASEURL}/${slug}/detail/${id}`)
+  }
 
   return (
     <>
-      <article>
-        <button
-          type="button"
-          onClick={() => router.push('{apartments}/detail/{1}')}
+      {properties.map((property) => {
+        ;<div
+          key={property.id}
+          onClick={(e) => handlePropertyClick(e, property.id, property.slug)}
         >
-          <Image
-            src="/images/apartments.jpg"
-            width={365}
-            height={290}
-            alt="매물이미지"
-          />
-          <ul>
-            <li>{forSaleName}</li>
-            <li>{forSalePrice}</li>
-          </ul>
-        </button>
-      </article>
+          <div className="thumbnail-container">
+            <Image
+              src={property.image}
+              alt={property.name}
+              width={200}
+              height={200}
+            />
+            <div className="thumbnail-info">
+              <h3 className="property-name">{property.name}</h3>
+              <p className="property-price">
+                {property.price.toLocaleString()}
+              </p>
+            </div>
+          </div>
+        </div>
+      })}
     </>
   )
 }
 
-export default Apartments
+export default Thumbnail
