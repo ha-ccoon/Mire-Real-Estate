@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import Thumbnail from '@/components/categories/Apartments'
+import Thumbnail from '@/components/categories/Thumbnail'
 import axios from 'axios'
 
 const Page = () => {
