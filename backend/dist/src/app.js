@@ -27,18 +27,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
-var yamljs_1 = __importDefault(require("yamljs"));
-// import yaml from 'js-yaml';
 var dotenv_1 = __importDefault(require("dotenv"));
 var swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
-var path_1 = __importDefault(require("path"));
-var swaggerDocument = __importStar(require("../swagger.yaml"));
+var swaggerDocument = __importStar(require("../swagger.json"));
 var winston_1 = require("./config/winston");
 require("reflect-metadata");
 var data_source_1 = __importDefault(require("./config/data-source"));
 dotenv_1.default.config();
 var app = (0, express_1.default)();
-var swaggerSpec = yamljs_1.default.load(path_1.default.join(__dirname, '../build/swagger.yaml'));
 app.use('/api-docs', swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swaggerDocument));
 app.listen(5000, function () {
     winston_1.logger.info('The server is listening to 5000');
