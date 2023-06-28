@@ -8,15 +8,15 @@ const logDir = 'logs';
 const { combine, timestamp, printf } = winston.format;
 
 // log format 설정
-const logFormat = printf((info) => {
-  return `${info.timestamp} ${info.level}: ${info.message}`;
-});
+const logFormat = printf(
+  (info) => `${info.timestamp} ${info.level}: ${info.message}`
+);
 
 // transport 설정
 const infoTransport = new winstonDaily({
   level: 'info',
   datePattern: 'YYYY-MM-DD',
-  dirname: logDir + '/info',
+  dirname: `${logDir}/info`,
   filename: `%DATE%.log`,
   maxFiles: 30, // 30일치 로그 파일 저장
   zippedArchive: true,
@@ -25,7 +25,7 @@ const infoTransport = new winstonDaily({
 const errorTransport = new winstonDaily({
   level: 'error',
   datePattern: 'YYYY-MM-DD',
-  dirname: logDir + '/error',
+  dirname: `${logDir}/error`,
   filename: `%DATE%.error.log`,
   maxFiles: 30,
   zippedArchive: true,

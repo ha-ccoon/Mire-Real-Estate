@@ -11,14 +11,12 @@ dotenv_1.default.config();
 var logDir = 'logs';
 var _a = winston_1.default.format, combine = _a.combine, timestamp = _a.timestamp, printf = _a.printf;
 // log format 설정
-var logFormat = printf(function (info) {
-    return "".concat(info.timestamp, " ").concat(info.level, ": ").concat(info.message);
-});
+var logFormat = printf(function (info) { return "".concat(info.timestamp, " ").concat(info.level, ": ").concat(info.message); });
 // transport 설정
 var infoTransport = new winston_daily_rotate_file_1.default({
     level: 'info',
     datePattern: 'YYYY-MM-DD',
-    dirname: logDir + '/info',
+    dirname: "".concat(logDir, "/info"),
     filename: "%DATE%.log",
     maxFiles: 30,
     zippedArchive: true,
@@ -26,7 +24,7 @@ var infoTransport = new winston_daily_rotate_file_1.default({
 var errorTransport = new winston_daily_rotate_file_1.default({
     level: 'error',
     datePattern: 'YYYY-MM-DD',
-    dirname: logDir + '/error',
+    dirname: "".concat(logDir, "/error"),
     filename: "%DATE%.error.log",
     maxFiles: 30,
     zippedArchive: true,
