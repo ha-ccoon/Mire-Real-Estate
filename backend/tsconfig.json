@@ -7,10 +7,12 @@
     "esModuleInterop": true,
     "outDir": "dist/",
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node"
   },
   // 컴파일 파일 경로
-  "include": ["./src/*.ts", "src/config/winston.ts"],
+  "include": ["./src/**/*.ts", "./*.ts"],
   // 컴파일 제외 파일 경로
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "dist"]
 }
