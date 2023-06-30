@@ -15,6 +15,9 @@ module.exports = {
       height: {
         24: '6rem', // 24의 단위로 6rem(레만) 높이를 지정
       },
+      maxWidth: {
+        1400: '1400px',
+      },
     },
   },
   plugins: [],
