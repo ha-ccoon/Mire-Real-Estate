@@ -10,11 +10,8 @@ import AppDataSource from './config/data-source';
 dotenv.config();
 const app = express();
 
+// swagger 셋업
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-
-app.listen(5000, () => {
-  logger.info('The server is listening to 5000');
-});
 
 app.get('/api-docs', (req, res) => {
   logger.info('GET /');
@@ -39,3 +36,7 @@ AppDataSource.initialize()
     logger.info('Database is connected');
   })
   .catch((error) => logger.error(error));
+
+app.listen(process.env.PORT ?? 8080, () => {
+  logger.info(`The server is listening to ${process.env.PORT}`);
+});
