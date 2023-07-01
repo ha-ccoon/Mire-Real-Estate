@@ -1,0 +1,47 @@
+# Repository의 Actions 탭에 나타날 Workflow 이름으로 필수 옵션은 아닙니다.
+name: MRE CI
+on:
+  push:
+    branches: [release]
+    paths:
+      - "**.js"
+  pull_request:
+    branches: [release]
+    paths: 
+      - "**.js"
+      
+jobs:
+  build:
+    strategy:
+      matrix:
+        node-version: [20.x]
+        
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Git clone repository
+        uses: actions/checkout@v2
+      
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20.x'
+        
+      - name: Install backend dependencies
+        working-directory: backend
+        run: npm ci
+
+      - name: Run backend tests
+        working-directory: backend
+        run: npm test
+
+      - name: Install frontend dependencies
+        working-directory: frontend
+        run: npm ci
+
+      - name: Build frontend
+        working-directory: frontend
+        run: npm run dev
+
+      - name: Run frontend tests
+        working-directory: frontend
+        run: npm test
