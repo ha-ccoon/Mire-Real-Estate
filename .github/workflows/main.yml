@@ -3,29 +3,25 @@ name: MRE CI/CD
 on:
   push:
     branches: [release]
-    paths:
-      - "**.js"
   pull_request:
     branches: [release]
-    paths: 
-      - "**.js"
-      
+
 jobs:
   build:
     strategy:
       matrix:
-        node-version: [20.x]        
+        node-version: [20.x]
     runs-on: ubuntu-22.04
-    
+
     steps:
       - name: Git clone repository
         uses: actions/checkout@v2
-      
+
       - name: Install Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '20.x'
-        
+
       - name: Install backend dependencies
         working-directory: backend
         run: npm ci
@@ -33,12 +29,12 @@ jobs:
       - name: Install frontend dependencies
         working-directory: frontend
         run: npm ci
-        
+
       - name: Build frontend
         working-directory: frontend
         run: npm run dev
-      
-  deploy: 
+
+  deploy:
     needs: build
     runs-on: ubuntu-22.04
 
@@ -47,12 +43,12 @@ jobs:
         run: |
           # 서버에 배포 스크립트 실행
           sshpass -p ${{ secrets.SSH_PASSWORD }} ssh ubuntu@3.37.6.59 "cd /mirae-real-estate/backend && git pull origin release"
-      
+
       - name: Build docker image
         run: |
           docker build -t backend .
           docker run --name backend --restart always -d -p ${{ secrets.BACKEND_HOST_PORT }}:${{ secrets.BACKEND_CONTAINER_PORT }} backend
-          
+
       - name: Notice deployment status
         run: |
           # 배포 상태를 Slack 등으로 알림
