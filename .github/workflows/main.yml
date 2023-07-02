@@ -32,7 +32,7 @@ jobs:
 
       - name: Build frontend
         working-directory: frontend
-        run: npm run dev
+        run: npm run build
 
   deploy:
     needs: build
