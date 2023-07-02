@@ -34,22 +34,22 @@ jobs:
         working-directory: frontend
         run: npm run build
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-22.04
+  # deploy:
+  #   needs: build
+  #   runs-on: ubuntu-22.04
 
-    steps:
-      - name: Deploy backend
-        run: |
-          # 서버에 배포 스크립트 실행
-          sshpass -p ${{ secrets.SSH_PASSWORD }} ssh ubuntu@3.37.6.59 "cd /mirae-real-estate/backend && git pull origin release"
+  #   steps:
+  #     - name: Deploy backend
+  #       run: |
+  #         # 서버에 배포 스크립트 실행
+  #         sshpass -p ${{ secrets.SSH_PASSWORD }} ssh ubuntu@3.37.6.59 "cd /mirae-real-estate/backend && git pull origin release"
 
-      - name: Build docker image
-        run: |
-          docker build -t backend .
-          docker run --name backend --restart always -d -p ${{ secrets.BACKEND_HOST_PORT }}:${{ secrets.BACKEND_CONTAINER_PORT }} backend
+  #     - name: Build docker image
+  #       run: |
+  #         docker build -t backend .
+  #         docker run --name backend --restart always -d -p ${{ secrets.BACKEND_HOST_PORT }}:${{ secrets.BACKEND_CONTAINER_PORT }} backend
 
-      - name: Notice deployment status
-        run: |
-          # 배포 상태를 Slack 등으로 알림
-          curl -X POST -H 'Content-type: application/json' --data '{"text":"Deployment complete!"}' ${{ secrets.SLACK_WEBHOOK }}
+  #     - name: Notice deployment status
+  #       run: |
+  #         # 배포 상태를 Slack 등으로 알림
+  #         curl -X POST -H 'Content-type: application/json' --data '{"text":"Deployment complete!"}' ${{ secrets.SLACK_WEBHOOK }}
