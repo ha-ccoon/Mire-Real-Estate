@@ -1,4 +1,6 @@
-import ProductList from '@/components/List/Card'
+'use clinet'
+
+import ProductList from '@/components/List/ProductList'
 
 const page = () => {
   return (
