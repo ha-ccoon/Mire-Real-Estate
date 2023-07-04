@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
 
 interface Property {
@@ -11,20 +11,42 @@ interface Property {
 
 const Page = () => {
   const [properties, setProperties] = useState<Property[]>([])
+  const [isLoading, setIsLoading] = useState(false)
+  const [page, setPage] = useState(1)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('/api/mockup/properties')
-        setProperties(response.data)
-        console.log(response.data)
-      } catch (error) {
-        console.error('Error fetching data:', error)
-      }
-    }
-
     fetchData()
   }, [])
+
+  useEffect(() => {
+    if (containerRef.current) {
+      const observer = new IntersectionObserver(handleObserver, {
+        threshold: 1,
+      })
+      observer.observe(containerRef.current)
+    }
+  }, [])
+
+  const fetchData = async () => {
+    try {
+      setIsLoading(true)
+      const response = await axios.get('/api/mockup/properties?page=${page}')
+      setProperties((prevProperties) => [...prevProperties, ...response.data])
+      setPage((prevPage) => prevPage + 1)
+      setIsLoading(false)
+    } catch (error) {
+      console.error('Error fetching data:', error)
+      setIsLoading(false)
+    }
+  }
+
+  const handleObserver = (entries: IntersectionObserverEntry[]) => {
+    const target = entries[0]
+    if (target.isIntersecting) {
+      fetchData()
+    }
+  }
 
   return (
     <div>
@@ -36,6 +58,9 @@ const Page = () => {
           <p>{property.id}</p>
         </div>
       ))}
+      <div ref={containerRef} style={{ height: '10px' }}>
+        {isLoading && <p>Loading...</p>}
+      </div>
     </div>
   )
 }
