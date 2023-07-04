@@ -1,20 +1,43 @@
-'use clinet'
+'use client'
 
-import ProductList from '@/components/List/ProductList'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
-const page = () => {
+interface Property {
+  name: string
+  price: number
+  id: number
+}
+
+const Page = () => {
+  const [properties, setProperties] = useState<Property[]>([])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('/api/mockup/properties')
+        setProperties(response.data)
+        console.log(response.data)
+      } catch (error) {
+        console.error('Error fetching data:', error)
+      }
+    }
+
+    fetchData()
+  }, [])
+
   return (
     <div>
-      <h1>매물 목록</h1>
-      <ProductList />
+      <h1>부동산 매물 목록</h1>
+      {properties.map((property, index) => (
+        <div key={index}>
+          <h3>{property.name}</h3>
+          <p>{property.price.toLocaleString()}원</p>
+          <p>{property.id}</p>
+        </div>
+      ))}
     </div>
   )
 }
 
-export default page
-
-// const page = () => {
-//   return <div>원룸페이지입니다</div>
-// }
-
-// export default page
+export default Page
