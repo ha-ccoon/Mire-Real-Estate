@@ -58,7 +58,7 @@ const Page = () => {
           <p>{property.id}</p>
         </div>
       ))}
-      <div ref={containerRef} style={{ height: '10px' }}>
+      <div ref={containerRef} style={{ height: '100vh' }}>
         {isLoading && <p>Loading...</p>}
       </div>
     </div>
