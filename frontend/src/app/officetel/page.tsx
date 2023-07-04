@@ -9,12 +9,12 @@ const PropertyComponent = dynamic(
   },
 )
 
-const OneroomPage = () => {
+const OfficetelPage = () => {
   return (
     <>
-      <PropertyComponent propertyType="oneroom" />
+      <PropertyComponent propertyType="officetel" />
     </>
   )
 }
 
-export default OneroomPage
+export default OfficetelPage
