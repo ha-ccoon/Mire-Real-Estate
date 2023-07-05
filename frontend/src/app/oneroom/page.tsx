@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic'
 
 const PropertyComponent = dynamic(
-  () => import('@/components/Property/PropertyComponent'),
+  () => import('@/components/PropertyComponent/PropertyComponent'),
   {
     ssr: false,
   },
