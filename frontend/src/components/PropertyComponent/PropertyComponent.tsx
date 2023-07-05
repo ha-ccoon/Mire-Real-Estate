@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
 import Link from 'next/link'
 
+// 매물 목록(오피스텔, 원룸, 투룸) 공통 컴포넌트
 interface Property {
   name: string
   price: number
