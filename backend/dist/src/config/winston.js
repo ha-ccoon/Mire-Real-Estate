@@ -37,7 +37,7 @@ var logger = winston_1.default.createLogger({
     transports: [infoTransport, errorTransport],
 });
 exports.logger = logger;
-// Production 환경이 아닌 경우(dev 등)
+// Production 환경이 아닌 경우 로그 설정
 if (process.env.NODE_ENV !== 'production') {
     logger.add(new winston_1.default.transports.Console({
         format: winston_1.default.format.combine(winston_1.default.format.colorize(), winston_1.default.format.simple()),

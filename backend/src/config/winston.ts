@@ -18,7 +18,7 @@ const infoTransport = new winstonDaily({
   datePattern: 'YYYY-MM-DD',
   dirname: `${logDir}/info`,
   filename: `%DATE%.log`,
-  maxFiles: 30, // 30일치 로그 파일 저장
+  maxFiles: 30,
   zippedArchive: true,
 });
 
@@ -42,7 +42,7 @@ const logger = winston.createLogger({
   transports: [infoTransport, errorTransport],
 });
 
-// Production 환경이 아닌 경우(dev 등)
+// Production 환경이 아닌 경우 로그 설정
 if (process.env.NODE_ENV !== 'production') {
   logger.add(
     new winston.transports.Console({
