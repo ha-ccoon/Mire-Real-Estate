@@ -1,5 +1,7 @@
 import dotenv from 'dotenv';
+import { Request, Response } from 'express';
 import mongoose from 'mongoose';
+import { resolve } from 'path';
 import logger from './winston';
 
 dotenv.config();
@@ -15,6 +17,7 @@ const connectToMongoDB = async () => {
     return connection;
   } catch (error) {
     logger.error('MongoDB connection error', error);
+    throw error;
   }
 };
 

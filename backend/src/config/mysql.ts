@@ -4,7 +4,7 @@ import logger from './winston';
 
 dotenv.config();
 
-const connectMySQL = async () => {
+const connectToMySQL = async () => {
   try {
     const poolOptions: PoolOptions = {
       host: process.env.MYSQL_HOST,
@@ -23,13 +23,13 @@ const connectMySQL = async () => {
       keepAliveInitialDelay: 0,
     };
 
-    const pool: Pool = mysql.createPool(poolOptions);
-    await pool;
-
-    // class 만등러야해
+    const connectionPool: Pool = await mysql.createPool(poolOptions);
+    logger.info('MySQL is connected');
+    return connectionPool;
   } catch (error) {
-    logger.error('MySQL Connection: ', error);
+    logger.error('MySQL Connection', error);
+    throw error;
   }
 };
 
-export default connectMySQL;
+export default connectToMySQL;

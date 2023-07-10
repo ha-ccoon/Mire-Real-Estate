@@ -9,19 +9,13 @@ var dotenv_1 = __importDefault(require("dotenv"));
 var winston_1 = __importDefault(require("./config/winston"));
 require("reflect-metadata");
 var index_1 = __importDefault(require("./routes/index"));
+var mysql_1 = __importDefault(require("./config/mysql"));
 var mongoDB_1 = __importDefault(require("./config/mongoDB"));
 dotenv_1.default.config();
 var app = (0, express_1.default)();
 app.use('/api', index_1.default);
-// MySQL 연결
-// pool.getConnection((error: Error, connection: PoolConnection | undefined) => {
-//   if (error) {
-//     logger.error('MySQL Connection: ', error);
-//   }
-//   logger.info('MySQL is connected');
-//   pool.releaseConnection(connection);
-// });
-// MongoDB 연결
+// 데이터베이스 연결
+(0, mysql_1.default)();
 (0, mongoDB_1.default)();
 // 포트 연결
 app.listen((_a = process.env.PORT) !== null && _a !== void 0 ? _a : 8080, function () {

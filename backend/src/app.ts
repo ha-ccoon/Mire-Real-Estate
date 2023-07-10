@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import logger from './config/winston';
 import 'reflect-metadata';
 import indexRouter from './routes/index';
-import pool from './config/mysql';
+import connectToMySQL from './config/mysql';
 import connectToMongoDB from './config/mongoDB';
 
 dotenv.config();
@@ -11,17 +11,8 @@ const app = express();
 
 app.use('/api', indexRouter);
 
-// MySQL 연결
-// pool.getConnection((error: Error, connection: PoolConnection | undefined) => {
-//   if (error) {
-//     logger.error('MySQL Connection: ', error);
-//   }
-
-//   logger.info('MySQL is connected');
-//   pool.releaseConnection(connection);
-// });
-
-// MongoDB 연결
+// 데이터베이스 연결
+connectToMySQL();
 connectToMongoDB();
 
 // 포트 연결
