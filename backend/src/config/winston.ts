@@ -1,5 +1,5 @@
 import winston from 'winston';
-import winstonDaily from 'winston-daily-rotate-file';
+import WinstonDaily from 'winston-daily-rotate-file';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -13,7 +13,7 @@ const logFormat = printf(
 );
 
 // transport 설정
-const infoTransport = new winstonDaily({
+const infoTransport = new WinstonDaily({
   level: 'info',
   datePattern: 'YYYY-MM-DD',
   dirname: `${logDir}/info`,
@@ -22,7 +22,7 @@ const infoTransport = new winstonDaily({
   zippedArchive: true,
 });
 
-const errorTransport = new winstonDaily({
+const errorTransport = new WinstonDaily({
   level: 'error',
   datePattern: 'YYYY-MM-DD',
   dirname: `${logDir}/error`,
@@ -54,4 +54,4 @@ if (process.env.NODE_ENV !== 'production') {
   );
 }
 
-export { logger };
+export default logger;
