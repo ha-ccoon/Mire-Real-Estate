@@ -4,8 +4,7 @@ import logger from './config/winston';
 import 'reflect-metadata';
 import indexRouter from './routes/index';
 import pool from './config/mysql';
-import connectMongo from './config/mongoDB';
-// import { PoolConnection } from 'mysql2/typings/mysql/lib/PoolConnection';
+import connectToMongoDB from './config/mongoDB';
 
 dotenv.config();
 const app = express();
@@ -23,7 +22,7 @@ app.use('/api', indexRouter);
 // });
 
 // MongoDB 연결
-connectMongo();
+connectToMongoDB();
 
 // 포트 연결
 app.listen(process.env.PORT ?? 8080, () => {

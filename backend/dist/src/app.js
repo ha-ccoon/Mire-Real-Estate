@@ -10,7 +10,6 @@ var winston_1 = __importDefault(require("./config/winston"));
 require("reflect-metadata");
 var index_1 = __importDefault(require("./routes/index"));
 var mongoDB_1 = __importDefault(require("./config/mongoDB"));
-// import { PoolConnection } from 'mysql2/typings/mysql/lib/PoolConnection';
 dotenv_1.default.config();
 var app = (0, express_1.default)();
 app.use('/api', index_1.default);
