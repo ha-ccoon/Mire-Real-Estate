@@ -19,6 +19,8 @@
     "@types/node": "^20.3.1",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "mongodb": "^5.7.0",
+    "mongoose": "^7.3.2",
     "mysql2": "^3.4.0",
     "reflect-metadata": "^0.1.13",
     "swagger-cli": "^4.0.4",

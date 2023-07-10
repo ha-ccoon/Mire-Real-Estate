@@ -3,6 +3,7 @@
     "types": ["node", "express"],
     "target": "ES5",
     "module": "CommonJS",
+    "lib": ["es6"],
     "strict": true,
     "esModuleInterop": true,
     "outDir": "dist/",
