@@ -79,11 +79,19 @@ const PropertyComponent: React.FC<PropertyComponentProps> = ({
   }
 
   return (
-    <div>
-      <h1>부동산 매물 목록</h1>
+    <div className="w-[404px] relative ">
+      <h1
+        className="text-xl text-center font-bold"
+        style={{ fontSize: '15px' }}
+      >
+        지역 목록 {properties.length}개
+      </h1>
       {properties.map((property, index) => (
-        <article key={index}>
-          <h3>
+        <article
+          key={index}
+          className="bg-grey-200 p-4 mb-4 rounded-lg flex items-center"
+        >
+          <h3 className="mr-4 flex-shrink-0">
             <Link href={`/${propertyType}/details/${property.property_id}`}>
               <p>
                 {property.urgent_sale === 1 ? (
@@ -94,18 +102,29 @@ const PropertyComponent: React.FC<PropertyComponentProps> = ({
                   ''
                 )}
               </p>
-              <span>
+              <span
+                className="text-center relative font-bold"
+                style={{
+                  fontFamily: 'SpoqaHanSansNeo-Bold',
+                  fontSize: '20px',
+                }}
+              >
                 {property.property_type}
                 {property.property_type === '월세' && (
-                  <span>{property.deposit}/</span>
+                  <span> {property.deposit}/</span>
                 )}
                 {property.sale_price.toLocaleString()}원
               </span>
-              <p>{property.exclusive_area}평</p>
-              <p>
-                {property.floor}층 / {property.total_floors}층
-              </p>
-              <p>{property.postal_code}</p>
+              <span
+                className="text-[#9a9a9a] text-left left-[168px] top-9 w-[189px] h-12"
+                style={{ font: '400 13px' }}
+              >
+                <p>{property.exclusive_area}평</p>
+                <p>
+                  {property.floor}층 / {property.total_floors}층
+                </p>
+                <p>{property.postal_code}</p>
+              </span>
             </Link>
           </h3>
         </article>
