@@ -93,38 +93,49 @@ const PropertyComponent: React.FC<PropertyComponentProps> = ({
         >
           <h3 className="mr-4 flex-shrink-0">
             <Link href={`/${propertyType}/details/${property.property_id}`}>
-              <p>
-                {property.urgent_sale === 1 ? (
-                  <span role="img" aria-label="Urgent">
-                    🚨
-                  </span>
-                ) : (
-                  ''
-                )}
-              </p>
-              <span
-                className="text-center relative font-bold"
-                style={{
-                  fontFamily: 'SpoqaHanSansNeo-Bold',
-                  fontSize: '20px',
-                }}
-              >
-                {property.property_type}
-                {property.property_type === '월세' && (
-                  <span> {property.deposit}/</span>
-                )}
-                {property.sale_price.toLocaleString()}원
-              </span>
-              <span
-                className="text-[#9a9a9a] text-left left-[168px] top-9 w-[189px] h-12"
-                style={{ font: '400 13px' }}
-              >
-                <p>{property.exclusive_area}평</p>
-                <p>
-                  {property.floor}층 / {property.total_floors}층
-                </p>
-                <p>{property.postal_code}</p>
-              </span>
+              <div className="flex items-center">
+                <img
+                  src="/image/property.jpg"
+                  alt={property.property_name}
+                  className="w-155 h-113 mr-2"
+                />
+                <div>
+                  <h3 className="mr-4 flex-shrink-0">
+                    <p>
+                      {property.urgent_sale === 1 ? (
+                        <span role="img" aria-label="Urgent">
+                          🚨급매
+                        </span>
+                      ) : (
+                        ''
+                      )}
+                    </p>
+                    <span
+                      className="text-center relative font-bold"
+                      style={{
+                        fontFamily: 'SpoqaHanSansNeo-Bold',
+                        fontSize: '20px',
+                      }}
+                    >
+                      {property.property_type}
+                      {property.property_type === '월세' && (
+                        <span> {property.deposit.toLocaleString()}/</span>
+                      )}
+                      {property.sale_price.toLocaleString()}원
+                    </span>
+                    <span
+                      className="text-[#9a9a9a] text-left left-[168px] top-9 w-[189px] h-12"
+                      style={{ font: '400 13px' }}
+                    >
+                      <p>{property.exclusive_area}평</p>
+                      <p>
+                        {property.floor}층 / {property.total_floors}층
+                      </p>
+                      <p>{property.postal_code}</p>
+                    </span>
+                  </h3>
+                </div>
+              </div>
             </Link>
           </h3>
         </article>
