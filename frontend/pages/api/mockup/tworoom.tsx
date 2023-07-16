@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { MRE } from '../../../src/types'
 
 interface Property {
   property_name: string
