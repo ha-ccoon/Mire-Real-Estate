@@ -81,7 +81,7 @@ const PropertyComponent: React.FC<PropertyComponentProps> = ({
   return (
     <div className="w-[404px] relative ">
       <h1
-        className="text-xl text-center font-bold"
+        className="text-xl text-center font-bold mt-5"
         style={{ fontSize: '15px' }}
       >
         지역 목록 {properties.length}개
@@ -97,7 +97,8 @@ const PropertyComponent: React.FC<PropertyComponentProps> = ({
                 <img
                   src="/image/property.jpg"
                   alt={property.property_name}
-                  className="w-155 h-113 mr-2"
+                  className="mr-2"
+                  style={{ width: '155px', height: '113px' }}
                 />
                 <div>
                   <h3 className="mr-4 flex-shrink-0">
@@ -121,7 +122,7 @@ const PropertyComponent: React.FC<PropertyComponentProps> = ({
                       {property.property_type === '월세' && (
                         <span> {property.deposit.toLocaleString()}/</span>
                       )}
-                      {property.sale_price.toLocaleString()}원
+                      {property.sale_price?.toLocaleString()}원
                     </span>
                     <span
                       className="text-[#9a9a9a] text-left left-[168px] top-9 w-[189px] h-12"
