@@ -13,7 +13,7 @@ export interface MRE {
   exclusive_area: number // 전용 면적
   building_area: number // 건물 면적
   land_area: number // 대지 면적
-  postal_code: number // 도로명 주소
+  postal_code: string // 도로명 주소
   detail_address: string // 자세한 주소
   floor_plan: string // 평면도
   property_picture: string // 매물 사진

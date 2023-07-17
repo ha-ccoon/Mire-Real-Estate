@@ -2,19 +2,19 @@
 
 import dynamic from 'next/dynamic'
 
-const LandForestPropertyComponent = dynamic(
+const PropertyComponent = dynamic(
   () => import('@/components/Property/PropertyComponent'),
   {
     ssr: false,
   },
 )
 
-const LandForestPage = () => {
+const PropertyPage = () => {
   return (
     <>
-      <LandForestPropertyComponent propertyType="land-forest" />
+      <PropertyComponent propertyType="officetel" />
     </>
   )
 }
 
-export default LandForestPage
+export default PropertyPage

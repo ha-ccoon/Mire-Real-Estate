@@ -51,7 +51,7 @@ const PropertyDetailComponent: React.FC<PropertyDetailComponentProps> = ({
     try {
       setIsLoading(true)
       const response = await axios.get(
-        `/api/mockup/${propertyType}/detail/${page}`,
+        `/api/mockup/${propertyType}/details/${page}`,
       )
 
       const data: MRE[] = response.data
@@ -116,6 +116,9 @@ const PropertyDetailComponent: React.FC<PropertyDetailComponentProps> = ({
           </ul>
         </div>
       ))}
+      <div ref={containerRef} style={{ height: '100vh' }}>
+        {isLoading && <p>Loading...</p>}
+      </div>
     </>
   )
 }

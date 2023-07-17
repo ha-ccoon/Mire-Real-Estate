@@ -15,7 +15,7 @@ const ApartmentPage = () => {
     <>
       <div>
         <main className=" w-screen h-screen ">
-          {/* <KakaoMap /> */}
+          <KakaoMap />
           <ApartmentPropertyComponent propertyType="apartments" />
         </main>
       </div>
