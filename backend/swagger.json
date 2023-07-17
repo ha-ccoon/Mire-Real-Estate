@@ -5,8 +5,15 @@
     "version": "1.0.0",
     "description": "Mirae Real Estate"
   },
+  "tags": [
+    { "name": "apartment" },
+    { "name": "officetel oneroom tworoom" },
+    { "name": "house" },
+    { "name": "commercial store" },
+    { "name": "factory forestland" }
+  ],
   "paths": {
-    "/api/users": {
+    "/api/apartment": {
       "get": {
         "summary": "Get a list of users",
         "responses": {
@@ -30,6 +37,165 @@
                 }
               }
             }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Property": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int",
+            "example": 10
+          },
+          "urgent_sale": {
+            "type": "integer",
+            "format": "tinyint1",
+            "example": 1
+          },
+          "property_name": {
+            "type": "string",
+            "format": "var50",
+            "example": "에비씨 아파트"
+          },
+          "property_type": {
+            "type": "string",
+            "format": "var20",
+            "example": "apartment"
+          },
+          "sale_method": {
+            "type": "string",
+            "format": "var20",
+            "example": "sale"
+          },
+          "sale_price": {
+            "type": "string",
+            "format": "var20",
+            "example": "10억"
+          },
+          "deposit": {
+            "type": "string",
+            "format": "var20",
+            "example": "500만"
+          },
+          "premium_cost": {
+            "type": "string",
+            "format": "var20",
+            "example": "3000만"
+          },
+          "management_cost": {
+            "type": "string",
+            "format": "var20",
+            "example": "10만"
+          },
+          "price_nego": {
+            "type": "integer",
+            "format": "tinyint1",
+            "example": "sale"
+          },
+          "gross_leasable_area": {
+            "type": "integer",
+            "format": "int",
+            "example": "100"
+          },
+          "exclusive_area": {
+            "type": "integer",
+            "format": "int",
+            "example": "80"
+          },
+          "building_area": {
+            "type": "integer",
+            "format": "int",
+            "example": "300"
+          },
+          "land_area": {
+            "type": "integer",
+            "format": "int",
+            "example": "1000"
+          },
+          "postal_code": {
+            "type": "string",
+            "format": "var30",
+            "example": "아차산로 31길 50"
+          },
+          "detail_address": {
+            "type": "string",
+            "format": "var50",
+            "example": "화양 에비씨아파트 201동 201호"
+          },
+          "floor_plan": {
+            "type": "string",
+            "format": "var255",
+            "example": "https://www.google.com/search?q=445%ED%8F%89&rlz=1C5CHFA_enKR1023KR1031&oq=445%ED%8F%89&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQABiiBDIHCAIQABiiBDIHCAMQABiiBNIBCDI0OTFqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8"
+          },
+          "property_picture": {
+            "type": "string",
+            "format": "var255",
+            "example": "https://www.google.com/search?q=445%ED%8F%89&rlz=1C5CHFA_enKR1023KR1031&oq=445%ED%8F%89&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQABiiBDIHCAIQABiiBDIHCAMQABiiBNIBCDI0OTFqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8"
+          },
+          "year_built": {
+            "type": "integer",
+            "format": "int",
+            "example": "2010"
+          },
+          "availability": {
+            "type": "string",
+            "format": "var10",
+            "example": "즉시 가능"
+          },
+          "parking": {
+            "type": "string",
+            "format": "var10",
+            "example": "1대, 주차 가능"
+          },
+          "direction": {
+            "type": "string",
+            "format": "var10",
+            "example": "아차산로 31길 50"
+          },
+          "floor": {
+            "type": "integer",
+            "format": "int",
+            "example": "5"
+          },
+          "total_floors": {
+            "type": "integer",
+            "format": "int",
+            "example": "25"
+          },
+          "total_households": {
+            "type": "integer",
+            "format": "int",
+            "example": "250"
+          },
+          "room": {
+            "type": "integer",
+            "format": "int",
+            "example": "2"
+          },
+          "washroom": {
+            "type": "integer",
+            "format": "int",
+            "example": "1"
+          },
+          "building_structure": {
+            "type": "string",
+            "format": "var10",
+            "example": "복도식"
+          },
+          "building_type": {
+            "type": "string",
+            "format": "var10",
+            "example": "근린상가, 주상복합, 연립주택, 빌라"
+          },
+          "description": {
+            "type": "string",
+            "format": "text",
+            "example": "어쩌구 저쩌구"
           }
         }
       }

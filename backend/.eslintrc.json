@@ -17,15 +17,15 @@
   "plugins": ["@typescript-eslint", "prettier"],
   "rules": {
     "prettier/prettier": "error",
-    "import/extensions": "off" //이상한 확장자 오류 꺼버림
+    "import/extensions": "off"
   },
   "settings": {
     "import/resolver": {
       "node": {
-        "extensions": [".js", ".jsx", ".ts"],
+        "extensions": [".js", ".ts"],
         "moduleDirectory": ["node_modules", "@types"]
       },
-      "typescript": {} // this loads <rootdir>/tsconfig.json to eslint
+      "typescript": {}
     }
   }
 }
