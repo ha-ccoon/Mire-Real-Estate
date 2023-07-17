@@ -1,6 +1,6 @@
 'use client'
 
-// import KakaoMap from '@/components/main/KakaoMap'
+import KakaoMap from '@/components/main/KakaoMap'
 import dynamic from 'next/dynamic'
 
 const ApartmentPropertyComponent = dynamic(

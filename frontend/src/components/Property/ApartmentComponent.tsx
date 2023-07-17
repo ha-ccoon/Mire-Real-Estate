@@ -12,6 +12,8 @@ interface ApartmentsProperty {
   exclusive_area: number
   detail_address: string
   property_id: number
+  property_picture: string
+  deposit: string
 }
 interface ApartmentsComponentProps {
   propertyType: string
@@ -32,7 +34,7 @@ const ApartmentPropertyComponent: React.FC<ApartmentsComponentProps> = ({
   useEffect(() => {
     if (containerRef.current) {
       const observer = new IntersectionObserver(handleObserver, {
-        threshold: 1,
+        threshold: 0.5,
       })
       observer.observe(containerRef.current)
     }
@@ -54,6 +56,8 @@ const ApartmentPropertyComponent: React.FC<ApartmentsComponentProps> = ({
         exclusive_area: mre.exclusive_area,
         detail_address: mre.detail_address,
         property_id: mre.property_id,
+        property_picture: mre.property_picture,
+        deposit: mre.deposit,
       }))
       setProperties((prevProperties) => [...prevProperties, ...processData])
       setPage((prevPage) => prevPage + 1)
@@ -72,21 +76,62 @@ const ApartmentPropertyComponent: React.FC<ApartmentsComponentProps> = ({
   }
 
   return (
-    <div>
-      {properties.map((property, index) => (
-        <div key={index}>
-          <Link href={`/${propertyType}/details/${property.property_id}`}>
-            <div>
-              <h2>{property.property_name}</h2>
-              <p>급매 여부: {property.urgent_sale}</p>
-              <p>판매 형태: {property.sale_method}</p>
-              <p>가격: {property.sale_price}</p>
-              <p>전용 면적: {property.exclusive_area}</p>
-              <p>나머지 주소: {property.detail_address}</p>
-            </div>
-          </Link>
-        </div>
-      ))}
+    <div className="w-[404px] bg-white relative">
+      <h1
+        className="text-xl text-center font-bold mb-26 mt-5"
+        style={{ fontSize: '15px' }}
+      >
+        지역 목록 {properties.length}개
+      </h1>
+      <div className="flex flex-wrap">
+        {properties.map((property, index) => (
+          <article key={index} className="w-1/2 px-4 mb-9">
+            <Link href={`/${propertyType}/details/${property.property_id}`}>
+              <div
+                className="opacity-0.6 hover: opacity-1"
+                style={{
+                  backgroundImage: `url('/image/property.jpg')`, // 매물 이미지 데이터로 변경
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-reapeat',
+                  width: '181px',
+                  height: '275px',
+                  flexShrink: 0,
+                  opacity: '0.6',
+                  borderRadius: '15px',
+                  color: '#000000',
+                }}
+              >
+                <div>
+                  <p>
+                    {property.urgent_sale === 1 ? (
+                      <span role="img" aria-label="Urgent">
+                        🚨급매
+                      </span>
+                    ) : (
+                      ''
+                    )}
+                  </p>
+                  <h2
+                    style={{
+                      fontSize: '25px',
+                    }}
+                  >
+                    {property.property_name}
+                  </h2>
+                  <span>{property.sale_method}</span>
+                  {property.sale_method === '월세' && (
+                    <span> {property.deposit}/</span>
+                  )}
+                  <span> {property.sale_price}</span>
+                  <p>{property.exclusive_area}평</p>
+                  <p>{property.detail_address}</p>
+                </div>
+              </div>
+            </Link>
+          </article>
+        ))}
+      </div>
       <div ref={containerRef} style={{ height: '100vh' }}>
         {isLoading && <p>Loading...</p>}
       </div>
