@@ -13,7 +13,7 @@ const connectToMongoDB = async () => {
 
     return connection;
   } catch (error) {
-    logger.error('MongoDB connection error', error);
+    logger.error('[MongoDB]:', error);
     throw error;
   }
 };

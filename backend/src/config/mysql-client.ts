@@ -26,13 +26,12 @@ class ConnectToMySQL {
 
   constructor() {
     this.pool = mysql.createPool(poolOptions);
-    this.checkConnection();
   }
 
   async checkConnection() {
     try {
       const connection = await this.pool.getConnection();
-      logger.info('[MYSQL]: MySQL is connected.');
+      logger.info('MySQL is connected.');
       connection.release();
     } catch (error: any) {
       switch (error.code) {
