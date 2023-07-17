@@ -1,38 +1,40 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { MRE } from '../../../src/types'
 
 interface Property {
   property_name: string
-  sale_price: number
-  property_id: number
+  sale_price: string
   urgent_sale: number
-  property_type: string
-  deposit: string
+  sale_method: string
   exclusive_area: number
-  floor: number
-  total_floors: number
-  postal_code: string
+  detail_address: string
 }
 
-const properties: Property[] = []
+const generateMockData = (): Property[] => {
+  const properties: Property[] = []
 
-for (let i = 1; i <= 50; i++) {
-  const dummyProperty: Property = {
-    property_name: `오피스텔 ${i}`,
-    sale_price: Math.floor(Math.random() * 1000000000) + 100000000,
-    property_id: i,
-    urgent_sale: Math.random() < 0.5 ? 0 : 1,
-    property_type: ['월세', '전세', '매매'][Math.floor(Math.random() * 3)],
-    deposit: (Math.floor(Math.random() * 10000000) + 1000000).toString(),
-    exclusive_area: Math.floor(Math.random() * 33) + 18,
-    floor: Math.floor(Math.random() * 20) + 1,
-    total_floors: Math.floor(Math.random() * 20) + 1,
-    postal_code: '미래 아파트',
+  for (let i = 1; i <= 50; i++) {
+    const urgent_sale = Math.random() < 0.5 ? 0 : 1
+    const sale_method = ['전세', '매매', '월세'][Math.floor(Math.random() * 3)]
+    const sale_price = `${Math.floor(Math.random() * 1000) + 1}억`
+    const exclusive_area = Math.floor(Math.random() * 33) + 18
+    const detail_address = '101동 101호'
+
+    const property: Property = {
+      property_name: `아파트 ${i}`,
+      sale_price,
+      urgent_sale,
+      sale_method,
+      exclusive_area,
+      detail_address,
+    }
+
+    properties.push(property)
   }
 
-  properties.push(dummyProperty)
+  return properties
 }
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
+  const properties = generateMockData()
   res.status(200).json(properties)
 }
