@@ -6,7 +6,7 @@ import axios from 'axios'
 interface Property {
   property_picture: string
   postal_code: string
-  sale_methood: string
+  sale_method: string
   deposit: string
   sale_price: string
   management_cost: string
@@ -29,7 +29,6 @@ interface PropertyDetailComponentProps {
 
 const PropertyDetailComponent: React.FC<PropertyDetailComponentProps> = ({
   propertyType,
-  id,
 }) => {
   const [properties, setProperties] = useState<Property[]>([])
   const [isLoading, setIsLoading] = useState(false)
@@ -60,7 +59,7 @@ const PropertyDetailComponent: React.FC<PropertyDetailComponentProps> = ({
       const processData: Property[] = data.map((mre: MRE) => ({
         property_picture: mre.property_picture,
         postal_code: mre.postal_code,
-        sale_methood: mre.sale_method,
+        sale_method: mre.sale_method,
         deposit: mre.deposit,
         sale_price: mre.sale_price,
         management_cost: mre.management_cost,
@@ -104,7 +103,7 @@ const PropertyDetailComponent: React.FC<PropertyDetailComponentProps> = ({
           <img src={property.property_picture} alt="매물 사진" />
           <p>매물 정보:</p>
           <ul>
-            <li>전세/월세: {property.sale_methood}</li>
+            <li>전세/월세: {property.sale_method}</li>
             <li>보증금: {property.deposit}</li>
             <li>월세: {property.sale_price}</li>
             <li>관리비: {property.management_cost}</li>

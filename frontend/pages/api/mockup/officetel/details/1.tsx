@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 interface Property {
   property_picture: string
   postal_code: number
-  sale_methood: string
+  sale_method: string
   deposit: string
   sale_price: string
   management_cost: string
@@ -17,14 +17,13 @@ interface Property {
   parking: string
   availability: string
   year_built: number
-  property_id: number
 }
 
 const properties: Property[] = [
   {
     property_picture: '123',
     postal_code: 46523,
-    sale_methood: '전세',
+    sale_method: '전세',
     deposit: '2000만원',
     sale_price: '35만원',
     management_cost: '7만원',
@@ -38,7 +37,6 @@ const properties: Property[] = [
     parking: '1대',
     availability: '즉시 입주 가능',
     year_built: 2023,
-    property_id: 1,
   },
 ]
 
