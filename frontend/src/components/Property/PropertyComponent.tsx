@@ -14,7 +14,7 @@ interface Property {
   exclusive_area: number
   floor: number
   total_floors: number
-  postal_code: number
+  postal_code: string
 }
 
 interface PropertyComponentProps {

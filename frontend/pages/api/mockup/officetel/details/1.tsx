@@ -17,6 +17,7 @@ interface Property {
   parking: string
   availability: string
   year_built: number
+  property_id: number
 }
 
 const properties: Property[] = [
@@ -37,6 +38,7 @@ const properties: Property[] = [
     parking: '1대',
     availability: '즉시 입주 가능',
     year_built: 2023,
+    property_id: 1,
   },
 ]
 
