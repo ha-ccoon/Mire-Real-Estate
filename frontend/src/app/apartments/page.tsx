@@ -1,16 +1,26 @@
 'use client'
 
-import KakaoMap from '@/components/main/KakaoMap'
+// import KakaoMap from '@/components/main/KakaoMap'
+import dynamic from 'next/dynamic'
 
-const page = () => {
+const ApartmentPropertyComponent = dynamic(
+  () => import('@/components/Property/ApartmentComponent'),
+  {
+    ssr: false,
+  },
+)
+
+const ApartmentPage = () => {
   return (
-    <div>
-      skrr
-      <main className=" w-screen h-screen ">
-        <KakaoMap />
-      </main>
-    </div>
+    <>
+      <div>
+        <main className=" w-screen h-screen ">
+          {/* <KakaoMap /> */}
+          <ApartmentPropertyComponent propertyType="apartments" />
+        </main>
+      </div>
+    </>
   )
 }
 
-export default page
+export default ApartmentPage

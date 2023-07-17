@@ -7,6 +7,7 @@ interface Property {
   sale_method: string
   exclusive_area: number
   detail_address: string
+  deposit: string
 }
 
 const generateMockData = (): Property[] => {
@@ -18,6 +19,7 @@ const generateMockData = (): Property[] => {
     const sale_price = `${Math.floor(Math.random() * 1000) + 1}억`
     const exclusive_area = Math.floor(Math.random() * 33) + 18
     const detail_address = '101동 101호'
+    const deposit = `${Math.floor(Math.random() * 100)}만원`
 
     const property: Property = {
       property_name: `아파트 ${i}`,
@@ -26,6 +28,7 @@ const generateMockData = (): Property[] => {
       sale_method,
       exclusive_area,
       detail_address,
+      deposit,
     }
 
     properties.push(property)
