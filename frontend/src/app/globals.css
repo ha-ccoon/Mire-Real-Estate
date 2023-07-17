@@ -6,3 +6,17 @@
 @import 'tailwindcss/utilities';
 
 @import 'normalize.css';
+
+@font-face {
+  font-family: 'SpoqaHanSansNeo';
+  src: url('../../public/fonts/SpoqaHanSansNeo.ttf') format('truetype');
+}
+
+html,
+body {
+  font-family: 'SpoqaHanSansNeo', sans-serif;
+}
+
+.font-custom {
+  font-family: 'SpoqaHanSansNeo', sans-serif;
+}
