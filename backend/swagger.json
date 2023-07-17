@@ -7,27 +7,15 @@
   },
   "tags": [
     { "name": "apartment" },
-    { "name": "officetel/oneroom/tworoom" },
+    { "name": "officetel oneroom tworoom" },
     { "name": "house" },
-    { "name": "commercial/store" },
-    { "name": "factory/forest/land" }
+    { "name": "commercial store" },
+    { "name": "factory forestland" }
   ],
   "paths": {
     "/api/apartment": {
       "get": {
-        "tags": ["apartment"],
-        "summary": "Get a list of entire apartments",
-        "description": "Get a list of apartments for all types of sale methods",
-        "requestBody": {
-          "description": "A list of apartements",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#components/schemas/Property"
-              }
-            }
-          }
-        },
+        "summary": "Get a list of users",
         "responses": {
           "200": {
             "description": "Successful response",
