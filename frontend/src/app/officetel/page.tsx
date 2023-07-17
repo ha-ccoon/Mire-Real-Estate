@@ -2,27 +2,19 @@
 
 import dynamic from 'next/dynamic'
 
-const PropertyComponent = dynamic(
+const LandForestPropertyComponent = dynamic(
   () => import('@/components/Property/PropertyComponent'),
   {
     ssr: false,
   },
 )
 
-const PropertyFilter = dynamic(
-  () => import('@/components/PropertyFilter/PropertyFilter'),
-  {
-    ssr: false,
-  },
-)
-
-const OfficetelPage = () => {
+const LandForestPage = () => {
   return (
     <>
-      <PropertyComponent propertyType="officetel" />
-      <PropertyFilter propertyType="officetel" />
+      <LandForestPropertyComponent propertyType="land-forest" />
     </>
   )
 }
 
-export default OfficetelPage
+export default LandForestPage
