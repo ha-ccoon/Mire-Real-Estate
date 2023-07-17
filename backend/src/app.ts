@@ -3,8 +3,8 @@ import dotenv from 'dotenv';
 import logger from './config/winston';
 import 'reflect-metadata';
 import indexRouter from './routes/index';
-import connectToMySQL from './config/mysql';
 import connectToMongoDB from './config/mongoDB';
+import mysqlClient from './config/mysql-client';
 
 dotenv.config();
 const app = express();
@@ -12,7 +12,6 @@ const app = express();
 app.use('/api', indexRouter);
 
 // 데이터베이스 연결
-connectToMySQL();
 connectToMongoDB();
 
 // 포트 연결
