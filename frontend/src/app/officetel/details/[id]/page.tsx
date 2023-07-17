@@ -5,7 +5,7 @@ import axios from 'axios'
 
 interface Property {
   property_picture: string
-  postal_code: number
+  postal_code: string
   sale_methood: string
   deposit: string
   sale_price: string
