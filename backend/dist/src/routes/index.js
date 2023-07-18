@@ -28,13 +28,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
-var winston_1 = __importDefault(require("../config/winston"));
 var swaggerDocument = __importStar(require("../../swagger.json"));
+var Coordinate_1 = require("../models/Coordinate");
 var router = express_1.default.Router();
 // swagger 연결
 router.use('/docs', swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swaggerDocument));
-router.get('/', function (req, res) {
-    winston_1.default.info('GET /');
-    res.sendStatus(200);
-});
+router.get('/run', Coordinate_1.run);
 exports.default = router;
