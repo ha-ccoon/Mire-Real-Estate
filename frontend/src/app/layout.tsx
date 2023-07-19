@@ -1,11 +1,8 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
 
 import Header from '../components/header/Header'
 import Footer from '../components/footer/Footer'
 import ReduxProvider from '@/components/redux-provider'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Mirae real estate',
