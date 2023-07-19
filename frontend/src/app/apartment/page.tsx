@@ -12,14 +12,12 @@ const ApartmentPropertyComponent = dynamic(
 
 const ApartmentPage = () => {
   return (
-    <>
-      <div>
-        <main className=" w-screen h-screen ">
-          <KakaoMap />
-          <ApartmentPropertyComponent propertyType="apartment" />
-        </main>
-      </div>
-    </>
+    <div>
+      <main className=" w-screen h-screen ">
+        <KakaoMap />
+        <ApartmentPropertyComponent propertyType="apartment" />
+      </main>
+    </div>
   )
 }
 

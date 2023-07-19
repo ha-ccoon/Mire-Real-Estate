@@ -3,7 +3,7 @@ import axios from 'axios'
 import Link from 'next/link'
 import { MRE } from '../../types'
 
-interface LandForestProperty {
+interface LandPropertyComponent {
   urgent_sale: number
   property_id: number
   sale_method: string //매매, 임대
@@ -20,9 +20,7 @@ interface LandForestComponentProps {
   propertyType: string
 }
 // 토지/임야,토지 매물 목록 컴포넌트
-const LandPropertyComponent: React.FC<LandForestComponentProps> = ({
-  propertyType,
-}) => {
+const LandPropertyComponent = ({ propertyType }: LandForestComponentProps) => {
   const [properties, setProperties] = useState<LandForestProperty[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [page, setPage] = useState(1)
@@ -44,11 +42,9 @@ const LandPropertyComponent: React.FC<LandForestComponentProps> = ({
   const fetchData = async () => {
     try {
       setIsLoading(true)
-      const response = await axios.get(
+      const { data } = await axios.get<MRE[]>(
         `/api/mockup/${propertyType}?page=${page}`,
       )
-
-      const data: MRE[] = response.data
       const processData: LandForestProperty[] = data.map((mre: MRE) => ({
         urgent_sale: mre.urgent_sale,
         property_id: mre.property_id,
