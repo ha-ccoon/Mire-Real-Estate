@@ -19,9 +19,7 @@ interface ApartmentsComponentProps {
   propertyType: string
 }
 
-const ApartmentPropertyComponent: React.FC<ApartmentsComponentProps> = ({
-  propertyType,
-}) => {
+const PropertyComponent = ({ propertyType }: PropertyComponentProps) => {
   const [properties, setProperties] = useState<ApartmentsProperty[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [page, setPage] = useState(1)

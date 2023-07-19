@@ -20,9 +20,7 @@ interface LandForestComponentProps {
   propertyType: string
 }
 // 토지/임야,토지 매물 목록 컴포넌트
-const LandPropertyComponent: React.FC<LandForestComponentProps> = ({
-  propertyType,
-}) => {
+const PropertyComponent = ({ propertyType }: PropertyComponentProps) => {
   const [properties, setProperties] = useState<LandForestProperty[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [page, setPage] = useState(1)

@@ -20,10 +20,13 @@ interface Property {
 interface PropertyComponentProps {
   propertyType: string
 }
+// const C1: React.FC<CProps> = (props) => { }
+// const C2 = (props: CProps) => {};
 
-const PropertyComponent: React.FC<PropertyComponentProps> = ({
-  propertyType,
-}) => {
+// const PropertyComponent: React.FC<PropertyComponentProps> = ({
+//   propertyType,
+// }) => {
+const PropertyComponent = ({ propertyType }: PropertyComponentProps) => {
   const [properties, setProperties] = useState<Property[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [page, setPage] = useState(1)
