@@ -29,4 +29,5 @@ export interface MRE {
   building_type: string // 건물 타입(ex.근린상가, 빌라 등)
   hoist: number // 호이스트
   description: string // 매물 설명
+  area_of_use: string // 용도 지역
 }

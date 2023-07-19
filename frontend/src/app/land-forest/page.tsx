@@ -10,11 +10,7 @@ const LandPropertyComponent = dynamic(
 )
 
 const LandForestPage = () => {
-  return (
-    <>
-      <LandPropertyComponent propertyType="land-forest" />
-    </>
-  )
+  return <LandPropertyComponent propertyType="land-forest" />
 }
 
 export default LandForestPage

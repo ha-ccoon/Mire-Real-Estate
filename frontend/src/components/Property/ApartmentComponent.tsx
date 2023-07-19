@@ -19,9 +19,9 @@ interface ApartmentsComponentProps {
   propertyType: string
 }
 
-const ApartmentPropertyComponent: React.FC<ApartmentsComponentProps> = ({
+const ApartmentPropertyComponent = ({
   propertyType,
-}) => {
+}: ApartmentsComponentProps) => {
   const [properties, setProperties] = useState<ApartmentsProperty[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [page, setPage] = useState(1)
@@ -43,11 +43,9 @@ const ApartmentPropertyComponent: React.FC<ApartmentsComponentProps> = ({
   const fetchData = async () => {
     try {
       setIsLoading(true)
-      const response = await axios.get(
+      const { data } = await axios.get<MRE[]>(
         `/api/mockup/${propertyType}?page=${page}`,
       )
-
-      const data: MRE[] = response.data
       const processData: ApartmentsProperty[] = data.map((mre: MRE) => ({
         property_name: mre.property_name,
         sale_price: mre.sale_price,

@@ -20,10 +20,13 @@ interface Property {
 interface PropertyComponentProps {
   propertyType: string
 }
+// const C1: React.FC<CProps> = (props) => { }
+// const C2 = (props: CProps) => {};
 
-const PropertyComponent: React.FC<PropertyComponentProps> = ({
-  propertyType,
-}) => {
+// const PropertyComponent: React.FC<PropertyComponentProps> = ({
+//   propertyType,
+// }) => {
+const PropertyComponent = ({ propertyType }: PropertyComponentProps) => {
   const [properties, setProperties] = useState<Property[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [page, setPage] = useState(1)
@@ -45,11 +48,9 @@ const PropertyComponent: React.FC<PropertyComponentProps> = ({
   const fetchData = async () => {
     try {
       setIsLoading(true)
-      const response = await axios.get(
+      const { data } = await axios.get<MRE[]>(
         `/api/mockup/${propertyType}?page=${page}`,
       )
-
-      const data: MRE[] = response.data
       const processData: Property[] = data.map((mre: MRE) => ({
         property_name: mre.property_name,
         sale_price: mre.sale_price,
