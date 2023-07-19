@@ -19,7 +19,9 @@ interface ApartmentsComponentProps {
   propertyType: string
 }
 
-const PropertyComponent = ({ propertyType }: PropertyComponentProps) => {
+const ApartmentPropertyComponent = ({
+  propertyType,
+}: ApartmentsComponentProps) => {
   const [properties, setProperties] = useState<ApartmentsProperty[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [page, setPage] = useState(1)
