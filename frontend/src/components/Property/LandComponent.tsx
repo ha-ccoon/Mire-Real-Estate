@@ -44,11 +44,9 @@ const LandPropertyComponent: React.FC<LandForestComponentProps> = ({
   const fetchData = async () => {
     try {
       setIsLoading(true)
-      const response = await axios.get(
+      const { data } = await axios.get<MRE[]>(
         `/api/mockup/${propertyType}?page=${page}`,
       )
-
-      const data: MRE[] = response.data
       const processData: LandForestProperty[] = data.map((mre: MRE) => ({
         urgent_sale: mre.urgent_sale,
         property_id: mre.property_id,

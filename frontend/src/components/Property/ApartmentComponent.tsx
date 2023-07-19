@@ -43,11 +43,9 @@ const ApartmentPropertyComponent: React.FC<ApartmentsComponentProps> = ({
   const fetchData = async () => {
     try {
       setIsLoading(true)
-      const response = await axios.get(
+      const { data } = await axios.get<MRE[]>(
         `/api/mockup/${propertyType}?page=${page}`,
       )
-
-      const data: MRE[] = response.data
       const processData: ApartmentsProperty[] = data.map((mre: MRE) => ({
         property_name: mre.property_name,
         sale_price: mre.sale_price,
