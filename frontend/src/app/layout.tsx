@@ -2,6 +2,7 @@ import './globals.css'
 
 import Header from '../components/header/Header'
 import Footer from '../components/footer/Footer'
+import ReduxProvider from '@/components/redux-provider'
 
 export const metadata = {
   title: 'Mirae real estate',
@@ -15,10 +16,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="font-custoem">
-        <Header />
-        {children}
-        <Footer />
+      <body className={inter.className}>
+        <ReduxProvider >
+          <Header />
+          {children}
+          <Footer />
+        </ReduxProvider>
       </body>
     </html>
   )
