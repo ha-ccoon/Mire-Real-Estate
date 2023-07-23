@@ -1,28 +1,66 @@
+'use client'
+
+import Link from 'next/link'
 import React from 'react'
+import { usePathname } from 'next/navigation'
 
 export async function generateStaticParams() {
   return [{ lang: 'en-US' }, { lang: 'de' }]
 }
 
+// TODO: 이후 해당 부분 url에 맞도록 변경해야함
+// TODO: Dropdown 을위한 자료 구조로 변경
+const menu = [
+  {
+    href: '/apartment',
+    name: '아파트',
+  },
+  {
+    href: '/officetel',
+    name: '오피스텔',
+  },
+  {
+    href: '/oneroom',
+    name: '원룸',
+  },
+  {
+    href: '/rebuilding',
+    name: '재개발/재건축',
+  },
+]
+
 export default function Root() {
+  const pathName = usePathname()
+
   return (
-    <header className="text-gray-600 body-font shadow-md">
-      <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-        <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+    <header className="text-gray-600 shadow-md body-font">
+      <div className="container flex flex-col flex-wrap items-center p-5 mx-auto cursor-pointer md:flex-row">
+        <Link
+          className="flex items-center mb-4 font-medium text-gray-900 title-font md:mb-0"
+          href={'/'}
+        >
           <img
             src="/Logo.png"
             alt="logo"
-            className="w-14 h-13 text-white  bg-yellow-300 rounded-full"
+            className="text-white bg-yellow-300 rounded-full w-14 h-13"
           />
           <span className="ml-3 text-2xl font-medium">미래 부동산</span>
-        </a>
-        <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
-          <a className="mr-12 hover:text-gray-900">아파트</a>
-          <a className="mr-12 hover:text-gray-900">오피스텔</a>
-          <a className="mr-12 hover:text-gray-900">원룸</a>
-          <a className="mr-12 hover:text-gray-900">재개발/재건축</a>
+        </Link>
+        <nav className="flex flex-wrap items-center justify-center text-base md:ml-auto md:mr-auto">
+          {/* TODO: 드롭다운 구조 적용 */}
+          {menu.map((item) => (
+            <Link
+              className={`mr-12 hover:text-gray-900 ${
+                pathName === item.href ? 'font-bold text-yellow-300' : ''
+              }`}
+              key={item.href}
+              href={item.href}
+            >
+              {item.name}
+            </Link>
+          ))}
         </nav>
-        <button className="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
+        <button className="inline-flex items-center px-3 py-1 mt-4 text-base bg-gray-100 border-0 rounded focus:outline-none hover:bg-gray-200 md:mt-0">
           기타
           <svg
             fill="none"
