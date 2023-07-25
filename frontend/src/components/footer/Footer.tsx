@@ -1,5 +1,5 @@
 import React from 'react'
-
+import Link from 'next/link'
 export async function generateStaticParams() {
   return [{ lang: 'en-US' }, { lang: 'de' }]
 }
@@ -27,6 +27,11 @@ export default function Root() {
           </div>
         </div>
       </div>
+      <Link href="/login">
+        <button className="inline-flex items-center bg-yellow-400 border-0 ml-[200px] mb-4 py-2 px-6 focus:outline-none hover:bg-yellow-300 rounded text-lg font-bold mt-4 md:mt-0">
+          관리자 로그인
+        </button>
+      </Link>
       <div className="bg-gray-100">
         <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
           <p className="text-gray-500 text-sm text-center sm:text-left">

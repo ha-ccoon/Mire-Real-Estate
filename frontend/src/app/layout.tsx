@@ -16,8 +16,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <ReduxProvider >
+      <head>
+        <script
+          type="text/javascript"
+          src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bc9a1a6e3d248caad693cd88df390c11&libraries=services"
+        ></script>
+      </head>
+      <body>
+        <ReduxProvider>
           <Header />
           {children}
           <Footer />
