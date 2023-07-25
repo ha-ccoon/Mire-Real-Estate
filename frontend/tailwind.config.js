@@ -21,6 +21,9 @@ module.exports = {
       maxWidth: {
         1400: '1400px',
       },
+      backgroundColor: {
+        custom: '#365171',
+      },
     },
   },
   plugins: [],
